@@ -334,23 +334,26 @@
     <script src="main.js"></script>
     <script src="profile.js"></script>
     <script src="jquery/profile.jquery.js"></script>
+    <script src="jquery/video.jquery.js"></script>
     <script>
             $(document).ready(() => {
+                videoButton();
                 $('#yt-button').click(()=>{
                     $('#yt-button').addClass('active');
                     $('#fb-button').removeClass('active');
-                    $('.youtube-video').slideDown()
-                    $('.social-profile').slideUp()
+                    $('.youtube-video').slideDown();
+                    $('.social-profile').slideUp();
+                    console.clear();
+                    videoButton()
                 });
                 $('#fb-button').click(()=>{
                     $('#fb-button').addClass('active');
                     $('#yt-button').removeClass('active');
-                    $('.youtube-video').slideUp()
-                    $('.social-profile').slideDown()
+                    $('.youtube-video').slideUp();
+                    $('.social-profile').slideDown();
+                    console.clear();
+                    profileButton()
                 });
-                // $('.console-clear').click(()=>{
-                //     console.clear()
-                // });
             });
         </script>
 </body>

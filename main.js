@@ -60,7 +60,12 @@ var Video = /** @class */ (function () {
             return _this.description;
         };
         this.getComments = function () {
-            return _this.comments;
+            if (_this.comments == undefined) {
+                return 0;
+            }
+            else {
+                return _this.comments;
+            }
         };
         this.getSubtitles = function () {
             return _this.subtitles;
@@ -131,7 +136,7 @@ var Video = /** @class */ (function () {
             }
         };
         this.addToPlaylist = function (playlist) {
-            return playlist[playlist.length] = _this.id;
+            playlist[playlist.length] = _this.id;
         };
         this.id = id;
         this.publisherId = publisherId;
@@ -156,101 +161,30 @@ var Video = /** @class */ (function () {
     } // end constructor
     return Video;
 }()); // end class 
-var today = new Date;
-var newVideo = new Video("a9fsfAZ60Tk", "dk3fdjCu7fJ", "Random Title", ["smartphones", "samsung", "galaxy s9+"], "Science & Technology", "Standard Youtube License", 18, today, "this is sample description", 263000, 3600, 4500, 1080, ["Subtitles 1", "Subtitles 2"], true, false, 3433530, 5643564, "public");
-newVideo.addComment("001", "User1", "Comment 1", today);
-newVideo.addCommentLike("001");
-newVideo.addCommentDislike("001");
-console.log(newVideo.getComments());
-var getRelatedVideos;
-var getChannelName;
-$(document).ready(function () {
-    var playlist = ["id1", "id2"];
-    $('#getTitle').click(function () {
-        var title = newVideo.getTitle();
-        $('.title').text(title);
-        console.log(title);
-    });
-    $('#getViews').click(function () {
-        var views = newVideo.getViews();
-        $('.views').text(views);
-        console.log(views);
-    });
-    $('#getLikes').click(function () {
-        var likes = newVideo.getLikes();
-        $('.likes').text(likes);
-        console.log(likes);
-    });
-    $('#getDislikes').click(function () {
-        var dislikes = newVideo.getDislikes();
-        $('.dislikes').text(dislikes);
-        console.log(dislikes);
-    });
-    $('#getUploadDate').click(function () {
-        var uploadDate = newVideo.getUploadDate();
-        var dateString = uploadDate.toLocaleString('en-IN', { day: 'numeric', month: 'numeric', year: 'numeric' });
-        console.log(dateString);
-        $('.uploaded').text(dateString);
-    });
-    $('#getVideoUrl').click(function () {
-        var videoUrl = newVideo.getVideoUrl();
-        $('.url').text(videoUrl);
-        console.log(videoUrl);
-    });
-    $('#getCommentsCount').click(function () {
-        var commentCount = newVideo.getCommentsCount();
-        console.log(commentCount);
-        $('.commentsCount').text(commentCount);
-    });
-    $('#getComments').click(function () {
-        var comments = newVideo.getComments();
-        updateComments(comments);
-    });
-    $('#addLike').click(function () {
-        console.log("Total likes:" + newVideo.getLikes() + ". \nAdding 1 like");
-        newVideo.addLike();
-        var likes = newVideo.getLikes();
-        $('.likes').text(likes);
-        console.log("Likes: " + likes);
-    });
-    $('#addDislike').click(function () {
-        console.log("Total dislikes:" + newVideo.getDislikes() + ". \nAdding 1 dislike");
-        newVideo.addDislike();
-        var dislikes = newVideo.getDislikes();
-        $('.dislikes').text(dislikes);
-        console.log("Dislikes: " + dislikes);
-    });
-    $('#addToPlaylist').click(function () {
-        newVideo.addToPlaylist(playlist);
-        console.log(playlist);
-    });
-    var commentId = 2;
-    $('#addComment').click(function () {
-        console.log("Total comment:" + newVideo.getCommentsCount() + "\nAdding 1 comment");
-        var commentBody = prompt('Type your comment.');
-        newVideo.addComment(commentId++, "UserName", commentBody, today);
-        var comments = newVideo.getComments();
-        updateComments(comments);
-    });
-    $('#addCommentLike').click(function () {
-        var commentId = prompt('Enter comment id to increase like');
-        newVideo.addCommentLike(commentId);
-        var comments = newVideo.getComments();
-        console.log(comments);
-        updateComments(comments);
-    });
-    $('#addCommentDislike').click(function () {
-        var commentId = prompt('Enter comment id to increase dislike');
-        newVideo.addCommentDislike(commentId);
-        var comments = newVideo.getComments();
-        console.log(comments);
-        updateComments(comments);
-    });
-    var updateComments = function (comments) {
-        $('.commentsRow').text('');
-        for (var _i = 0, comments_1 = comments; _i < comments_1.length; _i++) {
-            var comment = comments_1[_i];
-            $('.commentsRow').append("\n                <div class=\"col-12\"><div class=\"row\">\n                    <span class=\"col-12\">" + comment.userName + " " + comment.date.toLocaleString('en-IN', { day: 'numeric', month: 'numeric', year: 'numeric' }) + "</span>\n                    <span class=\"col-12\">" + comment.commentBody + "</span>\n                    <span class=\"col-auto\"><i class=\"far fa-thumbs-up\"></i>" + comment.likes + "</span>\n                    <span class=\"col-auto\"><i class=\"far fa-thumbs-down\"></i>" + comment.dislikes + "</span>\n                    <small class=\"col text-right\">Comment Id: " + comment.commentId + "</small>\n                    </div><hr></div>");
-        } //edn for
-    };
-});
+var videoButton = function () {
+    var today = new Date;
+    var newVideo = new Video("a9fsfAZ60Tk", "dk3fdjCu7fJ", "Random Title", ["smartphones", "samsung", "galaxy s9+"], "Science & Technology", "Standard Youtube License", 18, today, "this is sample description", 263000, 3600, 4500, 1080, ["Subtitles 1", "Subtitles 2"], true, false, 3433530, 5643564, "public");
+    console.log("Title: " + newVideo.getTitle());
+    console.log("Views: " + newVideo.getViews());
+    console.log("Likes: " + newVideo.getLikes());
+    console.log("Dislikes: " + newVideo.getDislikes());
+    console.log("Uploaded on: " + newVideo.getUploadDate());
+    console.log("Title: " + newVideo.getTitle());
+    console.log("Video url: " + newVideo.getVideoUrl());
+    console.log("Number of comments: " + newVideo.getCommentsCount());
+    console.log('Comments:');
+    console.log(newVideo.getComments());
+    console.log('Adding a comment:');
+    newVideo.addComment("001", "User1", "Comment 1", today);
+    newVideo.addCommentLike("001");
+    newVideo.addCommentDislike("001");
+    console.log(newVideo.getComments());
+    console.log("Playlist:");
+    var playlist = ["videoId001", "videoId002"];
+    console.log(playlist);
+    console.log("Adding this video to playlist:");
+    newVideo.addToPlaylist(playlist);
+    console.log(playlist);
+    var getRelatedVideos;
+    var getChannelName;
+};

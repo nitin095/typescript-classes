@@ -61,8 +61,12 @@ class Video {
     getDescription = ():string => {
         return this.description
     }
-    getComments = ():any[]|undefined => {
-        return this.comments
+    getComments = ():any => {
+        if(this.comments == undefined){
+            return 0
+        }else{
+            return this.comments
+        }
     }
     getSubtitles = ():string[] => {
         return this.subtitles
@@ -130,117 +134,41 @@ class Video {
             }
         }
     }
-    addToPlaylist = (playlist:string[]):string=>{
-        return playlist[playlist.length] = this.id
+    addToPlaylist = (playlist:string[])=>{
+        playlist[playlist.length] = this.id
     }
 
     }// end class 
     
-    let today:Date = new Date;
-    let newVideo = new Video("a9fsfAZ60Tk","dk3fdjCu7fJ","Random Title",["smartphones","samsung","galaxy s9+"],"Science & Technology","Standard Youtube License",18,today,"this is sample description",263000,3600,4500,1080,["Subtitles 1","Subtitles 2"],true,false,3433530,5643564,"public");
-    newVideo.addComment("001","User1","Comment 1",today);
-    newVideo.addCommentLike("001");
-    newVideo.addCommentDislike("001");
-    console.log(newVideo.getComments());
+    let videoButton = () => {
+        let today:Date = new Date;
+        let newVideo = new Video("a9fsfAZ60Tk","dk3fdjCu7fJ","Random Title",["smartphones","samsung","galaxy s9+"],"Science & Technology","Standard Youtube License",18,today,"this is sample description",263000,3600,4500,1080,["Subtitles 1","Subtitles 2"],true,false,3433530,5643564,"public");
+        
+        console.log(`Title: ${newVideo.getTitle()}`);
+        console.log(`Views: ${newVideo.getViews()}`);
+        console.log(`Likes: ${newVideo.getLikes()}`);
+        console.log(`Dislikes: ${newVideo.getDislikes()}`);
+        console.log(`Uploaded on: ${newVideo.getUploadDate()}`);
+        console.log(`Title: ${newVideo.getTitle()}`);
+        console.log(`Video url: ${newVideo.getVideoUrl()}`);
+        console.log(`Number of comments: ${newVideo.getCommentsCount()}`);
+        
+        console.log('Comments:')
+        console.log(newVideo.getComments());
+        console.log('Adding a comment:')
+        newVideo.addComment("001","User1","Comment 1",today);
+        newVideo.addCommentLike("001");
+        newVideo.addCommentDislike("001");
+        console.log(newVideo.getComments());
 
-    let getRelatedVideos :(videoId: string, publisherId: string, playlistId?: string) => string[];
-    
-    let getChannelName :(publisherId:string) => string;
-    
-    $(document).ready(() => {
-        let playlist = ["id1","id2"];
-        $('#getTitle').click(()=>{
-            let title = newVideo.getTitle();
-            $('.title').text(title);
-            console.log(title)
-        });
-        $('#getViews').click(()=>{
-            let views = newVideo.getViews();
-            $('.views').text(views);
-            console.log(views)
-        });
-        $('#getLikes').click(()=>{
-            let likes = newVideo.getLikes();
-            $('.likes').text(likes);
-            console.log(likes)
-        });
-        $('#getDislikes').click(()=>{
-            let dislikes = newVideo.getDislikes();
-            $('.dislikes').text(dislikes);
-            console.log(dislikes)
-        });
-        $('#getUploadDate').click(()=>{
-            let uploadDate:Date = newVideo.getUploadDate();
-            let dateString:string = uploadDate.toLocaleString('en-IN', { day: 'numeric', month: 'numeric', year: 'numeric' });
-            console.log(dateString)
-            $('.uploaded').text(dateString);
-        });
-        $('#getVideoUrl').click(()=>{
-            let videoUrl = newVideo.getVideoUrl();
-            $('.url').text(videoUrl);
-            console.log(videoUrl)
-        });
-        $('#getCommentsCount').click(()=>{
-            let commentCount:number = newVideo.getCommentsCount();
-            console.log(commentCount)
-            $('.commentsCount').text(commentCount);
-        });
-        $('#getComments').click(()=>{
-            let comments:any = newVideo.getComments();
-            updateComments(comments);
-        });
-        $('#addLike').click(()=>{
-            console.log(`Total likes:${newVideo.getLikes()}. \nAdding 1 like`)
-            newVideo.addLike();
-            let likes = newVideo.getLikes();
-            $('.likes').text(likes);
-            console.log(`Likes: ${likes}`)
-        });
-        $('#addDislike').click(()=>{
-            console.log(`Total dislikes:${newVideo.getDislikes()}. \nAdding 1 dislike`)
-            newVideo.addDislike();
-            let dislikes = newVideo.getDislikes();
-            $('.dislikes').text(dislikes);
-            console.log(`Dislikes: ${dislikes}`)
-        });
-        $('#addToPlaylist').click(() => {
-            newVideo.addToPlaylist(playlist);
-            console.log(playlist)
-        });
-        let commentId:number = 2;
-        $('#addComment').click(()=>{
-            console.log(`Total comment:${newVideo.getCommentsCount()}\nAdding 1 comment`)
-            let commentBody:any = prompt('Type your comment.');
-            newVideo.addComment(commentId++,"UserName",commentBody,today)
-            let comments:any = newVideo.getComments();
-            updateComments(comments);
-        });
-        $('#addCommentLike').click(() => {
-            let commentId = prompt('Enter comment id to increase like');
-            newVideo.addCommentLike(commentId);
-            let comments:any = newVideo.getComments();
-            console.log(comments)
-            updateComments(comments);
-        });
-        $('#addCommentDislike').click(() => {
-            let commentId = prompt('Enter comment id to increase dislike');
-            newVideo.addCommentDislike(commentId);
-            let comments:any = newVideo.getComments();
-            console.log(comments)
-            updateComments(comments);
-        });
+        console.log("Playlist:");
+        let playlist = ["videoId001","videoId002"];
+        console.log(playlist);
+        console.log("Adding this video to playlist:");
+        newVideo.addToPlaylist(playlist)
+        console.log(playlist);
 
-        let updateComments = (comments:any) => {
-            $('.commentsRow').text('');
-            for(let comment of comments){
-                $('.commentsRow').append(`
-                <div class="col-12"><div class="row">
-                    <span class="col-12">${comment.userName} ${comment.date.toLocaleString('en-IN', { day: 'numeric', month: 'numeric', year: 'numeric'})}</span>
-                    <span class="col-12">${comment.commentBody}</span>
-                    <span class="col-auto"><i class="far fa-thumbs-up"></i>${comment.likes}</span>
-                    <span class="col-auto"><i class="far fa-thumbs-down"></i>${comment.dislikes}</span>
-                    <small class="col text-right">Comment Id: ${comment.commentId}</small>
-                    </div><hr></div>`);
-            }//edn for
-        };
-    });
+        let getRelatedVideos :(videoId: string, publisherId: string, playlistId?: string) => string[];
+        
+        let getChannelName :(publisherId:string) => string;
+    }

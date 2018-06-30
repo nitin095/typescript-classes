@@ -181,17 +181,37 @@ class Profile {
     }
 }
 
-let profile = new Profile({id:'dnsfnkj232',userName:'someUserName',firstName:'Lorem',lastName:'Ipsum'},{currentCity:'New Delhi',homeTown:'Delhi'},{mobilePhone:[9999999999],address:'New Delhi, Delhi',email:'123@somemail.com',dob:'01-01-1995',yob:1995,religiousViews:'These are some religious views of the user',politicaliews:'These are some political views of the user',website:['somewebsite.com']},{work:['works at knowhere'],professionalSkills:['no'],university:['some university'],highSchool:['some school']},{status:'single',familyMembers:['']},{about:'This is some about-text about the user.'},[{year:1995,event:'born'}]);
-console.log(profile.getLifeEvents())
-console.log(profile.getProfileLink())
-console.log(profile.getFullName())
-console.log(profile.getAge())
-console.log(profile.getFriendsList())
-profile.addFriend('dsvdjjdj223');
-profile.addFriend('skkjfkjw334');
-console.log(profile.getFriendsList())
-profile.removeFriend('dsvdjjdj223');
-console.log(profile.getFriendsList())
+let profileButton = () => {
 
-profile.addLifeEvent(2000,"started school")
-console.log(profile.getLifeEvents())
+    let profile = new Profile({id:'dnsfnkj232',userName:'someUserName',firstName:'Lorem',lastName:'Ipsum'},{currentCity:'New Delhi',homeTown:'Delhi'},{mobilePhone:[9999999999],address:'New Delhi, Delhi',email:'123@somemail.com',dob:'01-01-1995',yob:1995,religiousViews:'These are some religious views of the user',politicaliews:'These are some political views of the user',website:['somewebsite.com']},{work:['works at knowhere'],professionalSkills:['no'],university:['some university'],highSchool:['some school']},{status:'single',familyMembers:['']},{about:'This is some about-text about the user.'},[{year:1995,event:'born'}]);
+
+    console.log(`Name: ${profile.getFullName()}`);
+    console.log(`Age is ${profile.getAge()}`);
+    console.log(`Profile url: ${profile.getProfileLink()}`);
+
+    console.log('Friends list:')
+    console.log(profile.getFriendsList());
+    console.log('Adding freinds:')
+    profile.addFriend('dsvdjjdj223');
+    profile.addFriend('skkjfkjw334');
+    console.log(profile.getFriendsList());
+    console.log('Removing 1 freinds:')
+    profile.removeFriend('dsvdjjdj223');
+    console.log(profile.getFriendsList());
+
+    console.log('Work And Education:');
+    console.log(profile.getWorkAndEducation());
+    console.log('Contact And Basic Info:');
+    console.log(profile.getContactAndBasicInfo());
+    console.log('Places Lived:');
+    console.log(profile.getPlacesLived());
+    console.log('Family And Relationships:');
+    console.log(profile.getFamilyAndRelationships());
+    console.log('Details:');
+    console.log(profile.getDetails());
+
+    console.log('LifeEvents:');
+    console.log(profile.getLifeEvents());
+    profile.addLifeEvent(2000,"started school");
+    console.log(profile.getLifeEvents())
+}
