@@ -109,8 +109,10 @@ class Video {
     addDislike = ():number=>{
         return this.dislikes++
     }
+    addView = ():number => {
+        return this.views++
+    }
     addComment = (commentId:any,user:string,comment:any,date:Date) => {
-        //return this.comments[this.comments.length] = comment
         if(this.comments == undefined){
             this.comments = [];    
         }
@@ -137,13 +139,18 @@ class Video {
     addToPlaylist = (playlist:string[])=>{
         playlist[playlist.length] = this.id
     }
+    setTitle = (title:string) => {
+        this.title = title
+    }
+
 
     }// end class 
     
+    let today:Date = new Date;
+    let newVideo;
+
     let videoButton = () => {
-        let today:Date = new Date;
-        let newVideo = new Video("a9fsfAZ60Tk","dk3fdjCu7fJ","Random Title",["smartphones","samsung","galaxy s9+"],"Science & Technology","Standard Youtube License",18,today,"this is sample description",263000,3600,4500,1080,["Subtitles 1","Subtitles 2"],true,false,3433530,5643564,"public");
-        
+        newVideo = new Video("a9fsfAZ60Tk","dk3fdjCu7fJ","Random Title",["smartphones","samsung","galaxy s9+"],"Science & Technology","Standard Youtube License",18,today,"this is sample description",263000,3600,4500,1080,["Subtitles 1","Subtitles 2"],true,false,3433530,5643564,"public");
         console.log(`Title: ${newVideo.getTitle()}`);
         console.log(`Views: ${newVideo.getViews()}`);
         console.log(`Likes: ${newVideo.getLikes()}`);

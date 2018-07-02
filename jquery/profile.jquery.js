@@ -10,10 +10,38 @@ $(document).ready(()=>{
         $('.mobile').text(mobile);
         console.log(`Mobile phone number: ${mobile}`)
     });
+    $('#getCurrentCity').click(()=>{
+        let city = profile.getCurrentCity();
+        $('.city').text(city);
+        console.log(`Current city: ${city}`)
+    });
+    $('#getDob').click(()=>{
+        let dob = profile.getDob();
+        $('.dob').text(dob);
+        console.log(`DOB: ${dob}`)
+    });
+    $('#getWork').click(()=>{
+        let work = profile.getWork();
+        $('.work').text(work);
+        console.log(`Works at: ${work}`)
+    });
+    $('#getSchool').click(()=>{
+        let school = profile.getSchool();
+        $('.school').text(school);
+        console.log(`School: ${school}`)
+    });
+    $('#getUniversity').click(()=>{
+        let university = profile.getUniversity();
+        $('.university').text(university);
+        console.log(`University: ${university}`)
+    });
     $('#getProfileLink').click(()=>{
         let link = profile.getProfileLink();
         $('.link').text(link);
         console.log(`Profile link: ${link}`)
+    });
+    $('#getNumberOfFriends').click(()=>{
+        console.log(`Number of Friends: ${profile.getNumberOfFriends()}`)
     });
     $('#getAge').click(()=>{
         let age = profile.getAge();

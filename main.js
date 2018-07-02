@@ -108,8 +108,10 @@ var Video = /** @class */ (function () {
         this.addDislike = function () {
             return _this.dislikes++;
         };
+        this.addView = function () {
+            return _this.views++;
+        };
         this.addComment = function (commentId, user, comment, date) {
-            //return this.comments[this.comments.length] = comment
             if (_this.comments == undefined) {
                 _this.comments = [];
             }
@@ -138,6 +140,9 @@ var Video = /** @class */ (function () {
         this.addToPlaylist = function (playlist) {
             playlist[playlist.length] = _this.id;
         };
+        this.setTitle = function (title) {
+            _this.title = title;
+        };
         this.id = id;
         this.publisherId = publisherId;
         this.title = title;
@@ -161,9 +166,10 @@ var Video = /** @class */ (function () {
     } // end constructor
     return Video;
 }()); // end class 
+var today = new Date;
+var newVideo;
 var videoButton = function () {
-    var today = new Date;
-    var newVideo = new Video("a9fsfAZ60Tk", "dk3fdjCu7fJ", "Random Title", ["smartphones", "samsung", "galaxy s9+"], "Science & Technology", "Standard Youtube License", 18, today, "this is sample description", 263000, 3600, 4500, 1080, ["Subtitles 1", "Subtitles 2"], true, false, 3433530, 5643564, "public");
+    newVideo = new Video("a9fsfAZ60Tk", "dk3fdjCu7fJ", "Random Title", ["smartphones", "samsung", "galaxy s9+"], "Science & Technology", "Standard Youtube License", 18, today, "this is sample description", 263000, 3600, 4500, 1080, ["Subtitles 1", "Subtitles 2"], true, false, 3433530, 5643564, "public");
     console.log("Title: " + newVideo.getTitle());
     console.log("Views: " + newVideo.getViews());
     console.log("Likes: " + newVideo.getLikes());

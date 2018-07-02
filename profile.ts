@@ -50,12 +50,30 @@ class Profile {
     getMobileNumber = ():number => {
         return this.contactAndBasicInfo.mobilePhone
     }
+    getCurrentCity = ():string => {
+        return this.placesLived.currentCity
+    }
+    getDob = ():string => {
+        return this.contactAndBasicInfo.dob
+    }
+    getWork = ():string => {
+        return this.workAndEducation.work
+    }
+    getSchool = ():string => {
+        return this.workAndEducation.highSchool
+    }
+    getUniversity = ():string => {
+        return this.workAndEducation.university
+    }
     getFriendsList = ():any => {
         if(this.friendsList == undefined){
             return 'No friends.'
         }else{
             return this.friendsList
         }
+    }
+    getNumberOfFriends = ():number => {
+        return this.friendsList.length
     }
     getProfileId = ():string => {
         return this.id
@@ -101,11 +119,10 @@ class Profile {
         if(this.friendsList == undefined){
             this.friendsList = []
         }
- 
         return this.friendsList.push(id)
     }
     removeFriend = (id:string) => {
-        return this.friendsList.pop(id)
+        return this.friendsList.splice( this.friendsList.indexOf(id), 1 );
     }
     setCurrentCity = (city:string) => {
         if(this.placesLived.otherPlacedLived == undefined){
@@ -181,21 +198,21 @@ class Profile {
     }
 }
 
+let profile;
+
 let profileButton = () => {
-
-    let profile = new Profile({id:'dnsfnkj232',userName:'someUserName',firstName:'Lorem',lastName:'Ipsum'},{currentCity:'New Delhi',homeTown:'Delhi'},{mobilePhone:[9999999999],address:'New Delhi, Delhi',email:'123@somemail.com',dob:'01-01-1995',yob:1995,religiousViews:'These are some religious views of the user',politicaliews:'These are some political views of the user',website:['somewebsite.com']},{work:['works at knowhere'],professionalSkills:['no'],university:['some university'],highSchool:['some school']},{status:'single',familyMembers:['']},{about:'This is some about-text about the user.'},[{year:1995,event:'born'}]);
-
+    profile = new Profile({id:'dnsfnkj232',userName:'someUserName',firstName:'Lorem',lastName:'Ipsum'},{currentCity:'New Delhi',homeTown:'Delhi'},{mobilePhone:[9999999999],address:'New Delhi, Delhi',email:'123@somemail.com',dob:'01-01-1995',yob:1995,religiousViews:'These are some religious views of the user',politicaliews:'These are some political views of the user',website:['somewebsite.com']},{work:['works at knowhere'],professionalSkills:['no'],university:['some university'],highSchool:['some school']},{status:'single',familyMembers:['']},{about:'This is some about-text about the user.'},[{year:1995,event:'born'}]);
     console.log(`Name: ${profile.getFullName()}`);
     console.log(`Age is ${profile.getAge()}`);
     console.log(`Profile url: ${profile.getProfileLink()}`);
 
-    console.log('Friends list:')
+    console.log('Friends list:');
     console.log(profile.getFriendsList());
-    console.log('Adding freinds:')
+    console.log('Adding freinds:');
     profile.addFriend('dsvdjjdj223');
-    profile.addFriend('skkjfkjw334');
+    profile.addFriend('someFriendId');
     console.log(profile.getFriendsList());
-    console.log('Removing 1 freinds:')
+    console.log('Removing 1 freinds:');
     profile.removeFriend('dsvdjjdj223');
     console.log(profile.getFriendsList());
 

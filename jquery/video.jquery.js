@@ -41,19 +41,62 @@ $(document).ready(() => {
         let comments = newVideo.getComments();
         updateComments(comments);
     });
+    $('#getId').click(()=>{
+        console.log(newVideo.getId())
+    });
+    $('#getPublisherId').click(()=>{
+        console.log(newVideo.getPublisherId())
+    });
+    $('#getTags').click(()=>{
+        console.log(newVideo.getTags())
+    });
+    $('#getCategory').click(()=>{
+        console.log(newVideo.getCategory())
+    });
+    $('#getLicense').click(()=>{
+        console.log(newVideo.getLicense())
+    });
+    $('#getDuration').click(()=>{
+        $('.duration').text(`${newVideo.getDuration()} minutes`)
+        console.log(newVideo.getDuration())
+    });
+    $('#getDescription').click(()=>{
+        console.log(newVideo.getDescription())
+    });
+    $('#getSubtitles').click(()=>{
+        console.log(newVideo.getSubtitles())
+    });
+    $('#getResolution').click(()=>{
+        console.log(newVideo.getResolution())
+    });
+    $('#getMonitization').click(()=>{
+        console.log(newVideo.getMonitization())
+    });
+    $('#getAgeRestriction').click(()=>{
+        console.log(newVideo.getAgeRestriction())
+    });
+    $('#getWatchTime').click(()=>{
+        console.log(newVideo.getWatchTime())
+    });
+    $('#getImpressions').click(()=>{
+        console.log(newVideo.getImpressions())
+    });
+    $('#getVisibility').click(()=>{
+        console.log(newVideo.getVisibility())
+    });
     $('#addLike').click(()=>{
         console.log(`Total likes:${newVideo.getLikes()}. \nAdding 1 like`)
         newVideo.addLike();
-        let likes = newVideo.getLikes();
-        $('.likes').text(likes);
-        console.log(`Likes: ${likes}`)
+        $('#getlikes').click()
     });
     $('#addDislike').click(()=>{
         console.log(`Total dislikes:${newVideo.getDislikes()}. \nAdding 1 dislike`)
         newVideo.addDislike();
-        let dislikes = newVideo.getDislikes();
-        $('.dislikes').text(dislikes);
-        console.log(`Dislikes: ${dislikes}`)
+        $('#getDislikes').click()
+    });
+    $('#addView').click(()=>{
+        newVideo.addView();
+        $('#getViews').click()
     });
     $('#addToPlaylist').click(() => {
         newVideo.addToPlaylist(playlist);
@@ -80,6 +123,11 @@ $(document).ready(() => {
         let comments = newVideo.getComments();
         console.log(comments)
         updateComments(comments);
+    });
+    $('#setTitle').click(()=>{
+        let title = prompt('Enter title');
+        newVideo.setTitle(title);
+        $('#getTitle').click()
     });
 
     let updateComments = (comments) => {

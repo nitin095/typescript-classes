@@ -35,6 +35,10 @@
                     <span class="title"></span>
                 </div>
                 <div class="col-12 text-center">
+                    <span>Duration:</span>
+                    <span class="duration"></span>
+                </div>
+                <div class="col-12 text-center">
                         <i class="fas fa-eye"></i>
                     <span class="mr-1">Views:</span>
                     <span class="views"></span>
@@ -86,6 +90,9 @@
                                         <span id="getTitle" class="method">getTitle</span>
                                     </div>
                                     <div class="col-12">
+                                        <span id="getDuration" class="method">getDuration</span>
+                                    </div>
+                                    <div class="col-12">
                                         <span id="getViews" class="method">getViews</span>
                                     </div>
                                     <div class="col-12">
@@ -105,7 +112,46 @@
                                     </div>
                                     <div class="col-12">
                                         <span id="getComments" class="method">getComments</span>
-                                </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getId" class="method">getId</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getPublisherId" class="method">getPublisherId</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getTags" class="method">getTags</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getCategory" class="method">getCategory</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getLicense" class="method">getLicense</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getDescription" class="method">getDescription</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getSubtitles" class="method">getSubtitles</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getResolution" class="method">getResolution</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getMonitization" class="method">getMonitization</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getAgeRestriction" class="method">getAgeRestriction</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getWatchTime" class="method">getWatchTime</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getImpressions" class="method">getImpressions</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getVisibility" class="method">getVisibility</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -120,6 +166,9 @@
                                             <span id="addDislike" class="method">addDislike</span>
                                     </div>
                                     <div class="col-12">
+                                        <span id="addView" class="method">addView</span>
+                                    </div>
+                                    <div class="col-12">
                                             <span id="addToPlaylist" class="method">addToPlaylist</span>
                                     </div>
                                     <div class="col-12">
@@ -130,6 +179,9 @@
                                     </div>
                                     <div class="col-12">
                                         <span id="addCommentDislike" class="method">addCommentDislike</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="setTitle" class="method">setTitle</span>
                                     </div>
                                 </div>
                                 <!-- end setter methods row -->
@@ -166,7 +218,7 @@
                     <span class="col-5 text-right">Age:</span>
                     <span class="col-7 text-left age"></span>
                     <span class="col-5 text-right">Lives in:</span>
-                    <span class="col-7 text-left CurrentCity"></span>
+                    <span class="col-7 text-left city"></span>
                     <span class="col-5 text-right">Birthday:</span>
                     <span class="col-7 text-left dob"></span>
                     <span class="col-5 text-right">Works at:</span>
@@ -202,13 +254,31 @@
                                                     <span id="getMobileNumber" class="method">getMobileNumber</span>
                                             </div>
                                             <div class="col-12">
-                                                    <span id="getProfileLink" class="method">getProfileLink</span>
-                                                </div>
-                                            <div class="col-12">
                                                 <span id="getAge" class="method">getAge</span>
                                             </div>
                                             <div class="col-12">
+                                                <span id="getCurrentCity" class="method">getCurrentCity</span>
+                                            </div>
+                                            <div class="col-12">
+                                                <span id="getDob" class="method">getDob</span>
+                                            </div>
+                                            <div class="col-12">
+                                                <span id="getWork" class="method">getWork</span>
+                                            </div>
+                                            <div class="col-12">
+                                                <span id="getUniversity" class="method">getUniversity</span>
+                                            </div>
+                                            <div class="col-12">
+                                                <span id="getSchool" class="method">getSchool</span>
+                                            </div>
+                                            <div class="col-12">
+                                                    <span id="getProfileLink" class="method">getProfileLink</span>
+                                                </div>
+                                            <div class="col-12">
                                                 <span id="getFriendsList" class="method">getFriendsList</span>
+                                            </div>
+                                            <div class="col-12">
+                                                <span id="getNumberOfFriends" class="method">getNumberOfFriends</span>
                                             </div>
                                             <div class="col-12">
                                                     <span id="getProfileId" class="method">getProfileId</span>
@@ -352,7 +422,7 @@
                     $('.youtube-video').slideUp();
                     $('.social-profile').slideDown();
                     console.clear();
-                    profileButton()
+                    profileButton();
                 });
             });
         </script>
