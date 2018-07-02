@@ -108,7 +108,8 @@ class Profile {
     getLifeEvents = ():any[] => {
         return this.lifeEvents
     }
-    getFriendsSuggestions! :(mobilePhone:number,highSchool:string[],university:string[],work:string[]) => any;
+    //this method can be used to get friends suggestions based on user friend list, mobile number, scholl, university and work
+    getFriendsSuggestions! :(friendList:string[],mobilePhone:number,highSchool:string[],university:string[],work:string[]) => any;
 
     //setters
     setName = (firstName:string,lastName:string) => {
@@ -122,7 +123,16 @@ class Profile {
         return this.friendsList.push(id)
     }
     removeFriend = (id:string) => {
-        return this.friendsList.splice( this.friendsList.indexOf(id), 1 );
+        let found = false;
+        for(let friendId of this.friendsList){
+            if(friendId == id){
+                found = true;
+                this.friendsList.splice( this.friendsList.indexOf(friendId), 1 );
+            }
+        }
+        if(!found){
+            alert("No friend found with this id.")
+        }
     }
     setCurrentCity = (city:string) => {
         if(this.placesLived.otherPlacedLived == undefined){

@@ -1,4 +1,3 @@
-
 $(document).ready(()=>{
     $('#getFullName').click(()=>{
         let name = profile.getFullName();
@@ -49,46 +48,37 @@ $(document).ready(()=>{
         console.log(`Age: ${age}`)
     });
     $('#getFriendsList').click(()=>{
-        let friendList = profile.getFriendsList();
-        console.log(`Friend List: ${friendList}`)
+        console.log(profile.getFriendsList())
     });
     $('#getProfileId').click(()=>{
-        let id = profile.getProfileId();
-        console.log(`Profile Id: ${id}`)
+        console.log(profile.getProfileId())
     });
     $('#getUserName').click(()=>{
-        let userName = profile.getUserName();
-        console.log(`User name: ${userName}`)
+        console.log(profile.getUserName())
     });
     $('#getOverview').click(()=>{
-        let overview = profile.getOverview();
-        console.log(overview)
+        console.log( profile.getOverview())
     });
     $('#getWorkAndEducation').click(()=>{
-        let workAndEducation = profile.getWorkAndEducation();
-        console.log(workAndEducation)
+        console.log(profile.getWorkAndEducation())
     });
     $('#getPlacesLived').click(()=>{
-        let placesLived = profile.getPlacesLived();
-        console.log(placesLived)
+        console.log(profile.getPlacesLived())
     });
     $('#getContactAndBasicInfo').click(()=>{
-        let contactAndBasicInfo = profile.getContactAndBasicInfo();
-        console.log(contactAndBasicInfo)
+        console.log( profile.getContactAndBasicInfo())
     });
     $('#getFamilyAndRelationships').click(()=>{
-        let familyAndRelationships = profile.getFamilyAndRelationships();
-        console.log(familyAndRelationships)
+        console.log(profile.getFamilyAndRelationships())
     });
     $('#getDetails').click(()=>{
-        let details = profile.getDetails();
-        console.log(details)
+        console.log(profile.getDetails())
     });
     $('#getLifeEvents').click(()=>{
-        let lifeEvents = profile.getLifeEvents();
-        console.log(lifeEvents)
+        console.log(profile.getLifeEvents())
     });
 
+    //setters
     $('#setName').click(()=>{
         let fname = prompt('Enter first name');
         let lname = prompt('Enter last name')
@@ -108,20 +98,17 @@ $(document).ready(()=>{
     $('#setCurrentCity').click(()=>{
         let city = prompt('Enter city');
         profile.setCurrentCity(city);
-        let places = profile.getPlacesLived();
-        console.log(`Current city: ${places.currentCity}`)
+        $('#getCurrentCity').click()
     });
     $('#addHighSchool').click(()=>{
         let school = prompt('Enter school name');
         profile.addHighSchool(school);
-        let education = profile.getWorkAndEducation();
-        console.log(education.highSchool)
+        $('#getSchool').click()
     });
     $('#addUniversity').click(()=>{
         let school = prompt('Enter university name');
         profile.addUniversity(school);
-        let education = profile.getWorkAndEducation();
-        console.log(education.university)
+        $('#getUniversity').click()
     });
     $('#addProfessionalSkills').click(()=>{
         let skill = prompt('Enter skill');
@@ -132,8 +119,7 @@ $(document).ready(()=>{
     $('#addWork').click(()=>{
         let newWork = prompt('Enter work');
         profile.addWork(newWork);
-        let work = profile.getWorkAndEducation();
-        console.log(work.work)
+        $('#getWork').click()
     });
     $('#setMobilPhone').click(()=>{
         let number = prompt('Enter number');
@@ -148,55 +134,67 @@ $(document).ready(()=>{
     $('#setAddress').click(()=>{
         let address = prompt('Enter address');
         profile.setAddress(address);
+        console.log(profile.getContactAndBasicInfo())
     });
     $('#setEmail').click(()=>{
         let email = prompt('Enter email');
         profile.setEmail(email);
+        console.log(profile.getContactAndBasicInfo())
     });
     $('#addWebsite').click(()=>{
         let website = prompt('Enter website');
         profile.addWebsite(website);
+        console.log(profile.getContactAndBasicInfo())
     });
     $('#setDob').click(()=>{
         let dob = prompt('Enter dob');
         profile.setDob(dob);
+        console.log(profile.getContactAndBasicInfo())
     });
     $('#setGender').click(()=>{
         let gender = prompt('Enter gender');
         profile.setGender(gender);
+        console.log(profile.getContactAndBasicInfo())
     });
     $('#setReligiousViews').click(()=>{
         let views = prompt('Enter Religious views');
         profile.setReligiousViews(views);
+        console.log(profile.getContactAndBasicInfo())
     });
     $('#setPoliticalViews').click(()=>{
         let views = prompt('Enter Political views');
         profile.setPoliticalViews(views);
+        console.log(profile.getContactAndBasicInfo())
     });
     $('#setRelationshipStatus').click(()=>{
         let status = prompt('Enter tRelationship Status');
         profile.setRelationshipStatus(status);
+        console.log(profile.getFamilyAndRelationships())
     });
     $('#addFamilyMember').click(()=>{
         let member = prompt('Enter Family member');
         profile.addFamilyMember(member);
+        console.log(profile.getFamilyAndRelationships())
     });
     $('#setAboutYou').click(()=>{
         let about = prompt('Enter About you');
         profile.setAboutYou(about);
+        console.log(profile.getDetails())
     });
     $('#addOtherName').click(()=>{
         let name = prompt('Enter other name');
         profile.addOtherName(name);
+        console.log(profile.getDetails())
     });
     $('#addQuote').click(()=>{
         let quote = prompt('Enter quote');
         profile.addQuote(quote);
+        console.log(profile.getDetails())   
     });
     $('#addLifeEvent').click(()=>{
         let eventYear = prompt('Enter Life Event Year');
         let event = prompt('Enter event name')
         profile.addLifeEvent(eventYear,event);
+        $('#getLifeEvents').click()
     });
-
 });

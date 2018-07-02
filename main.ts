@@ -1,7 +1,15 @@
-// defining Youtube video class
 class Video {
+    private comments:any
+    private subtitles:any
 
-    constructor (private id:string,private publisherId:string,public title:string,private tags:string[],public category:string,public license:string,public duration:number,public uploaded:Date,public description:string,public views:number,private likes:number,private dislikes:number,private resolution:number,public subtitles:string[],private monitization:boolean,private ageRestricted:boolean,private watchtime:number,private impressions:number,private visibility:string,private comments?:any[]){
+    constructor (private id:string,private publisherId:string,public title:string,
+        private tags:string[],public category:string,public license:string,
+        public duration:number,public uploaded:Date,public description:string,
+        public views:number,private likes:number,private dislikes:number,
+        private resolution:number,private monitization:boolean,private ageRestricted:boolean,
+        private watchtime:number,private impressions:number,private visibility:string,
+        private trendingNumber?:number,subtitles?:[{lang:string,transcript:string[]}],
+        comments?:[{commentId:string,userName:string,commentBody:string,date:Date,likes:number,dislikes:number}]){
         this.id = id;
         this.publisherId = publisherId;
         this.title = title;
@@ -15,6 +23,7 @@ class Video {
         this.dislikes = dislikes;
         this.description = description;
         this.comments = comments;
+        this.trendingNumber = trendingNumber;
         this.subtitles = subtitles;
         this.resolution = resolution;
         this.monitization = monitization;
@@ -68,7 +77,7 @@ class Video {
             return this.comments
         }
     }
-    getSubtitles = ():string[] => {
+    getSubtitles = ():any => {
         return this.subtitles
     }
     getResolution = ():number => {
@@ -89,9 +98,16 @@ class Video {
     getVisibility = ():string => {
         return this.visibility
     }
-    getVideoUrl = ():string=>{
+    getVideoUrl = ():string =>{
         let url = `https://www.youtube.com/watch?v=${this.id}`;
         return url
+    }
+    getTrendingNumber = ():number => {
+        if(this.trendingNumber == undefined){
+            return 0
+        }else{
+            return this.trendingNumber
+        }
     }
     getCommentsCount = ():number=>{
         if (this.comments !== undefined){
@@ -102,6 +118,10 @@ class Video {
     getEmbedCode = ():string => {
         return `<iframe width="640" height="360" src="https://www.youtube.com/embed/${this.id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
     }
+    //
+    getRelatedVideos!: (publisherId:string,category:string,playlistId?:string) => string[];
+        
+    getChannelName!: (publisherId: string) => string;
     //setter methods
     addLike = ():number=>{
         return this.likes++
@@ -116,7 +136,7 @@ class Video {
         if(this.comments == undefined){
             this.comments = [];    
         }
-            return this.comments[this.comments.length] = {commentId: commentId,userName: user,commentBody: comment,date: date,likes: 0,dislikes: 0};
+            return this.comments.push({commentId: commentId,userName: user,commentBody: comment,date: date,likes: 0,dislikes: 0});
     }
     addCommentLike = (commentId:any) => {
         if(this.comments !== undefined){
@@ -142,7 +162,48 @@ class Video {
     setTitle = (title:string) => {
         this.title = title
     }
-
+    setDuration = (duration:number) => {
+        this.duration = duration
+    }
+    addTag = (tag:string) => {
+        this.tags.push(tag)
+    }
+    removeTag = (tag:string) => {
+        this.tags.splice( this.tags.indexOf(tag), 1 );
+    }
+    setCategory = (category:string) => {
+        this.category = category
+    }
+    setLicense = (license:string) => {
+        this.license = license
+    }
+    setDescription = (description:string) => {
+        this.description = description
+    }
+    addSubtitles = (lang:string,transcript:string) => {
+        this.subtitles.push({lang:lang,transcript:transcript.split(",")})
+    }
+    setTrendingNumber = (number:number) => {
+        this.trendingNumber = number
+    }
+    setResolution = (resolution:number) => {
+        this.resolution = resolution
+    }
+    setMonitization = (yesOrNo:boolean) => {
+        this.monitization = yesOrNo
+    }
+    setAgeRestriction = (yesOrNo:boolean) => {
+        this.ageRestricted = yesOrNo
+    }
+    addWatchtime = (minutes:number) => {
+        this.watchtime += minutes
+    }
+    addImpression = () => {
+        this.impressions++
+    }
+    setVisibility = (visibility:string) => {
+        this.visibility = visibility
+    }
 
     }// end class 
     
@@ -150,7 +211,7 @@ class Video {
     let newVideo;
 
     let videoButton = () => {
-        newVideo = new Video("a9fsfAZ60Tk","dk3fdjCu7fJ","Random Title",["smartphones","samsung","galaxy s9+"],"Science & Technology","Standard Youtube License",18,today,"this is sample description",263000,3600,4500,1080,["Subtitles 1","Subtitles 2"],true,false,3433530,5643564,"public");
+        newVideo = new Video("a9fsfAZ60Tk","dk3fdjCu7fJ","Random Title",["smartphones","samsung","galaxy s9+"],"Science & Technology","Standard Youtube License",18,today,"this is sample description",263000,3600,4500,1080,true,false,3433530,5643564,"public",9,[{lang:"en-IN",transcript:["line 1","line 2"]}]);
         console.log(`Title: ${newVideo.getTitle()}`);
         console.log(`Views: ${newVideo.getViews()}`);
         console.log(`Likes: ${newVideo.getLikes()}`);
@@ -159,6 +220,7 @@ class Video {
         console.log(`Title: ${newVideo.getTitle()}`);
         console.log(`Video url: ${newVideo.getVideoUrl()}`);
         console.log(`Number of comments: ${newVideo.getCommentsCount()}`);
+        console.log(`Trending #${newVideo.getTrendingNumber()}`);
         
         console.log('Comments:')
         console.log(newVideo.getComments());
@@ -174,8 +236,4 @@ class Video {
         console.log("Adding this video to playlist:");
         newVideo.addToPlaylist(playlist)
         console.log(playlist);
-
-        let getRelatedVideos :(videoId: string, publisherId: string, playlistId?: string) => string[];
-        
-        let getChannelName :(publisherId:string) => string;
     }

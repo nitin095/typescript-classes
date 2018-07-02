@@ -89,7 +89,17 @@ var Profile = /** @class */ (function () {
             return _this.friendsList.push(id);
         };
         this.removeFriend = function (id) {
-            return _this.friendsList.splice(_this.friendsList.indexOf(id), 1);
+            var found = false;
+            for (var _i = 0, _a = _this.friendsList; _i < _a.length; _i++) {
+                var friendId = _a[_i];
+                if (friendId == id) {
+                    found = true;
+                    _this.friendsList.splice(_this.friendsList.indexOf(friendId), 1);
+                }
+            }
+            if (!found) {
+                alert("No friend found with this id.");
+            }
         };
         this.setCurrentCity = function (city) {
             if (_this.placesLived.otherPlacedLived == undefined) {

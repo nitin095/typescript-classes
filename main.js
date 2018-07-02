@@ -1,6 +1,5 @@
-// defining Youtube video class
 var Video = /** @class */ (function () {
-    function Video(id, publisherId, title, tags, category, license, duration, uploaded, description, views, likes, dislikes, resolution, subtitles, monitization, ageRestricted, watchtime, impressions, visibility, comments) {
+    function Video(id, publisherId, title, tags, category, license, duration, uploaded, description, views, likes, dislikes, resolution, monitization, ageRestricted, watchtime, impressions, visibility, trendingNumber, subtitles, comments) {
         var _this = this;
         this.id = id;
         this.publisherId = publisherId;
@@ -15,13 +14,12 @@ var Video = /** @class */ (function () {
         this.likes = likes;
         this.dislikes = dislikes;
         this.resolution = resolution;
-        this.subtitles = subtitles;
         this.monitization = monitization;
         this.ageRestricted = ageRestricted;
         this.watchtime = watchtime;
         this.impressions = impressions;
         this.visibility = visibility;
-        this.comments = comments;
+        this.trendingNumber = trendingNumber;
         // methods
         this.getId = function () {
             return _this.id;
@@ -92,6 +90,14 @@ var Video = /** @class */ (function () {
             var url = "https://www.youtube.com/watch?v=" + _this.id;
             return url;
         };
+        this.getTrendingNumber = function () {
+            if (_this.trendingNumber == undefined) {
+                return 0;
+            }
+            else {
+                return _this.trendingNumber;
+            }
+        };
         this.getCommentsCount = function () {
             if (_this.comments !== undefined) {
                 return _this.comments.length;
@@ -115,7 +121,7 @@ var Video = /** @class */ (function () {
             if (_this.comments == undefined) {
                 _this.comments = [];
             }
-            return _this.comments[_this.comments.length] = { commentId: commentId, userName: user, commentBody: comment, date: date, likes: 0, dislikes: 0 };
+            return _this.comments.push({ commentId: commentId, userName: user, commentBody: comment, date: date, likes: 0, dislikes: 0 });
         };
         this.addCommentLike = function (commentId) {
             if (_this.comments !== undefined) {
@@ -143,6 +149,48 @@ var Video = /** @class */ (function () {
         this.setTitle = function (title) {
             _this.title = title;
         };
+        this.setDuration = function (duration) {
+            _this.duration = duration;
+        };
+        this.addTag = function (tag) {
+            _this.tags.push(tag);
+        };
+        this.removeTag = function (tag) {
+            _this.tags.splice(_this.tags.indexOf(tag), 1);
+        };
+        this.setCategory = function (category) {
+            _this.category = category;
+        };
+        this.setLicense = function (license) {
+            _this.license = license;
+        };
+        this.setDescription = function (description) {
+            _this.description = description;
+        };
+        this.addSubtitles = function (lang, transcript) {
+            _this.subtitles.push({ lang: lang, transcript: transcript.split(",") });
+        };
+        this.setTrendingNumber = function (number) {
+            _this.trendingNumber = number;
+        };
+        this.setResolution = function (resolution) {
+            _this.resolution = resolution;
+        };
+        this.setMonitization = function (yesOrNo) {
+            _this.monitization = yesOrNo;
+        };
+        this.setAgeRestriction = function (yesOrNo) {
+            _this.ageRestricted = yesOrNo;
+        };
+        this.addWatchtime = function (minutes) {
+            _this.watchtime += minutes;
+        };
+        this.addImpression = function () {
+            _this.impressions++;
+        };
+        this.setVisibility = function (visibility) {
+            _this.visibility = visibility;
+        };
         this.id = id;
         this.publisherId = publisherId;
         this.title = title;
@@ -156,6 +204,7 @@ var Video = /** @class */ (function () {
         this.dislikes = dislikes;
         this.description = description;
         this.comments = comments;
+        this.trendingNumber = trendingNumber;
         this.subtitles = subtitles;
         this.resolution = resolution;
         this.monitization = monitization;
@@ -169,7 +218,7 @@ var Video = /** @class */ (function () {
 var today = new Date;
 var newVideo;
 var videoButton = function () {
-    newVideo = new Video("a9fsfAZ60Tk", "dk3fdjCu7fJ", "Random Title", ["smartphones", "samsung", "galaxy s9+"], "Science & Technology", "Standard Youtube License", 18, today, "this is sample description", 263000, 3600, 4500, 1080, ["Subtitles 1", "Subtitles 2"], true, false, 3433530, 5643564, "public");
+    newVideo = new Video("a9fsfAZ60Tk", "dk3fdjCu7fJ", "Random Title", ["smartphones", "samsung", "galaxy s9+"], "Science & Technology", "Standard Youtube License", 18, today, "this is sample description", 263000, 3600, 4500, 1080, true, false, 3433530, 5643564, "public", 9, [{ lang: "en-IN", transcript: ["line 1", "line 2"] }]);
     console.log("Title: " + newVideo.getTitle());
     console.log("Views: " + newVideo.getViews());
     console.log("Likes: " + newVideo.getLikes());
@@ -178,6 +227,7 @@ var videoButton = function () {
     console.log("Title: " + newVideo.getTitle());
     console.log("Video url: " + newVideo.getVideoUrl());
     console.log("Number of comments: " + newVideo.getCommentsCount());
+    console.log("Trending #" + newVideo.getTrendingNumber());
     console.log('Comments:');
     console.log(newVideo.getComments());
     console.log('Adding a comment:');
@@ -191,6 +241,4 @@ var videoButton = function () {
     console.log("Adding this video to playlist:");
     newVideo.addToPlaylist(playlist);
     console.log(playlist);
-    var getRelatedVideos;
-    var getChannelName;
 };

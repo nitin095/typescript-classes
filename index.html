@@ -58,6 +58,10 @@
                     <span class="uploaded"></span>
                 </div>
                 <div class="col-12 text-center">
+                    <span class="mr-1">Description:</span>
+                    <span class="description"></span>
+                </div>
+                <div class="col-12 text-center">
                         <span class="mr-1">Url:</span>
                         <span class="url"></span>
                 </div>
@@ -81,7 +85,7 @@
                     </div>
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12 col-md-6">
                                 <div class="row">
                                     <div class="col-12">
                                         <span class="dark-bg">Getter</span>
@@ -105,6 +109,9 @@
                                             <span id="getUploadDate" class="method">getUploadDate</span>
                                     </div>
                                     <div class="col-12">
+                                        <span id="getDescription" class="method">getDescription</span>
+                                    </div>
+                                    <div class="col-12">
                                             <span id="getVideoUrl" class="method">getVideoUrl</span>
                                     </div>
                                     <div class="col-12">
@@ -112,6 +119,9 @@
                                     </div>
                                     <div class="col-12">
                                         <span id="getComments" class="method">getComments</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="getTrendingNumber" class="method">getTrendingNumber</span>
                                     </div>
                                     <div class="col-12">
                                         <span id="getId" class="method">getId</span>
@@ -127,9 +137,6 @@
                                     </div>
                                     <div class="col-12">
                                         <span id="getLicense" class="method">getLicense</span>
-                                    </div>
-                                    <div class="col-12">
-                                        <span id="getDescription" class="method">getDescription</span>
                                     </div>
                                     <div class="col-12">
                                         <span id="getSubtitles" class="method">getSubtitles</span>
@@ -154,7 +161,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-12 col-md-6">
                                 <div class="row">
                                     <div class="col-12">
                                         <span class="dark-bg">Setter</span>
@@ -182,6 +189,45 @@
                                     </div>
                                     <div class="col-12">
                                         <span id="setTitle" class="method">setTitle</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="setDescription" class="method">setDescription</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="setDuration" class="method">setDuration</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="setTrendingNumber" class="method">setTrendingNumber</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="addTag" class="method">addTag</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="removeTag" class="method">removeTag</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="setCategory" class="method">setCategory</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="setLicense" class="method">setLicense</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="setResolution" class="method">setResolution</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="setMonitization" class="method">setMonitization</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="setAgeRestriction" class="method">setAgeRestriction</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="addWatchtime" class="method">addWatchtime</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="addImpression" class="method">addImpression</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span id="setVisibility" class="method">setVisibility</span>
                                     </div>
                                 </div>
                                 <!-- end setter methods row -->
@@ -242,7 +288,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-md-6">
                                         <div class="row">
                                             <div class="col-12">
                                                 <span class="dark-bg">Getter</span>
@@ -309,7 +355,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-md-6">
                                         <div class="row">
                                             <div class="col-12">
                                                 <span class="dark-bg">Setter</span>
@@ -406,25 +452,25 @@
     <script src="jquery/profile.jquery.js"></script>
     <script src="jquery/video.jquery.js"></script>
     <script>
-            $(document).ready(() => {
-                videoButton();
-                $('#yt-button').click(()=>{
-                    $('#yt-button').addClass('active');
-                    $('#fb-button').removeClass('active');
-                    $('.youtube-video').slideDown();
-                    $('.social-profile').slideUp();
-                    console.clear();
-                    videoButton()
-                });
-                $('#fb-button').click(()=>{
-                    $('#fb-button').addClass('active');
-                    $('#yt-button').removeClass('active');
-                    $('.youtube-video').slideUp();
-                    $('.social-profile').slideDown();
-                    console.clear();
-                    profileButton();
-                });
+        $(document).ready(() => {
+            videoButton();
+            $('#yt-button').click(()=>{
+                $('#yt-button').addClass('active');
+                $('#fb-button').removeClass('active');
+                $('.youtube-video').slideDown();
+                $('.social-profile').slideUp();
+                console.clear();
+                videoButton()
             });
-        </script>
+            $('#fb-button').click(()=>{
+                $('#fb-button').addClass('active');
+                $('#yt-button').removeClass('active');
+                $('.youtube-video').slideUp();
+                $('.social-profile').slideDown();
+                console.clear();
+                profileButton();
+            });
+        });
+    </script>
 </body>
 </html>
